@@ -1,0 +1,42 @@
+<div ngModel="product" class="container-fluid border">
+  <br>
+  <div class="container-fluid  border">
+    <div class="float-left">
+      <img  class="img-thumbnail" src="/assets/img/goreit_logo.jpg" alt="Card image cap">
+    </div>
+    <p>{{product.title}}</p>
+    <p><label>cena: </label>{{product.price}} PLN </p>
+    <button class="btn btn-primary" (click)="onOrderBuyClick()">Kup</button>
+    <hr/>
+    <p>{{product.text}}</p>
+    <br>
+  </div>
+  <br>
+
+  <h3> Wasze komentarze</h3>
+  <form (ngSubmit)="onCommentAdd(f)" #f="ngForm">
+    <div class="form-group">
+      <div class="form-check">
+        <label for="text"></label>
+        <textarea type="text"
+                  id="text"
+                  rows="4"
+                  class="form-control"
+                  ngModel
+                  name="text"
+                  required
+                  #comment = "ngModel"></textarea>
+        <button type="submit"
+                class="btn btn-primary"
+                [disabled]="!f.valid" >Dodaj</button>
+        <p *ngIf="!comment.valid && comment.touched"> Please provide a comment</p>
+      </div>
+    </div>
+  </form>
+  <app-comment *ngFor="let comment of product.comments" [userId]="comment.userId" [text]="comment.text"></app-comment>
+  <br>
+
+</div>
+<br>
+<br>
+
