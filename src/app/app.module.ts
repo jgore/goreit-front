@@ -15,11 +15,12 @@ import {AccountComponent} from './account/account.component';
 import {SellComponent} from './sell/sell.component';
 import {OrderComponent} from './product-list/product-details/order/order.component';
 import {ProductService} from './services/product-service';
+import {OrderService} from './services/order-service';
 
 const appRoutes: Routes = [
   {path: '', component: ProductListComponent},
   {path: 'produkt/:title', component: ProductDetailsComponent},
-  {path: 'zamowienie', component: OrderComponent},
+  {path: 'produkt/zamowienie/:title', component: OrderComponent},
   {path: 'sprzedaz', component: SellComponent},
   {path: 'konto', component: AccountComponent},
   {path: 'kontakt', component: ContactComponent}
@@ -44,7 +45,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ProductService],
+  providers: [ProductService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

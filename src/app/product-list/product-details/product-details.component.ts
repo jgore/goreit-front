@@ -12,10 +12,11 @@ import {ProductService} from '../../services/product-service';
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
 
-  mockUserId = 'mock user';
-  title: string;
+  private mockUserId = 'mock user';
+  private title: string;
   product: Product;
-  paramsSubscription: Subscription;
+  private quantity: number;
+  private paramsSubscription: Subscription;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -45,12 +46,12 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
     this.productService
       .addComent(this.mockUserId, this.title, form.value.text)
       .subscribe(() => {
-      this.ngOnInit();
-    });
+        this.ngOnInit();
+      });
   }
 
   onOrderBuyClick() {
-    this.router.navigate(['zamowienie']);
+    this.router.navigate([`produkt/zamowienie/${this.title}`]);
   }
 
   ngOnDestroy(): void {

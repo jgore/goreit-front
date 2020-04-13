@@ -1,1 +1,10 @@
-<p>order works!</p>
+<div class="container-fluid mt-3">
+  <h2> Potwierdzenie złożenia zamówienia: </h2>
+  <div class="container-fluid border">
+    <p>nazwa: <b>{{title}}</b></p>
+    <p>ilość: {{quantity}}</p>
+    <p>cena: {{price * quantity}}</p>
+    <button class="btn btn-primary" (click)="onOrderApproveClick()">Złóż zamówienie</button>
+  </div>
+</div>
+
