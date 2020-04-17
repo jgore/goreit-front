@@ -1,0 +1,16 @@
+<div class="jumbotron mt-3">
+  <button type="button" class="btn btn-primary btn-lg btn-block">Gratulacje ! Udało się złożyć zamówienie. </button>
+  <hr>
+  <p> Nr. zamówienia : {{ orderResponse.id }} </p>
+  <hr>
+  <div *ngFor="let orderlineView of orderResponse.orderlineViews">
+    <p> {{orderlineView.productTitle}}</p>
+    <p> <label>Cena: </label> {{orderlineView.price}} PLN</p>
+    <p> <label>Liczba sztuk: </label> {{orderlineView.amount}}</p>
+    <hr>
+    <p> <label> Suma: </label> {{orderlineView.amount * orderlineView.price}} PLN</p>
+  </div>
+  <hr class="my-4">
+  <a class="btn btn-primary btn mr-3" routerLink="/" role="button">Powrót</a>
+  <a class="btn btn-primary btn-" routerLink="/konto" role="button">Moje zamówienia</a>
+</div>

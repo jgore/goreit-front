@@ -15,7 +15,6 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   private mockUserId = 'mock user';
   private title: string;
   product: Product;
-  private quantity: number;
   private paramsSubscription: Subscription;
 
   constructor(private router: Router,
@@ -50,8 +49,10 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
-  onOrderBuyClick() {
-    this.router.navigate([`produkt/zamowienie/${this.title}`]);
+  onOrderBuyClick(form: NgForm) {
+    const amount = form.value.amount;
+    const price = this.product.price;
+    this.router.navigate([`produkt/zamowienie/${this.title}`, price, amount]);
   }
 
   ngOnDestroy(): void {

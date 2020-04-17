@@ -1,10 +1,12 @@
 <div class="container-fluid mt-3">
   <h2> Potwierdzenie złożenia zamówienia: </h2>
-  <div class="container-fluid border">
-    <p>nazwa: <b>{{title}}</b></p>
-    <p>ilość: {{quantity}}</p>
-    <p>cena: {{price * quantity}}</p>
-    <button class="btn btn-primary" (click)="onOrderApproveClick()">Złóż zamówienie</button>
+  <div class="container-fluid border mt-2 mb-3">
+    <p>Nazwa: <b>{{title}}</b></p>
+    <p>Liczba sztuk: {{amount}}</p>
+    <p>Cena: {{price}} PLN</p>
+    <hr />
+    <p>cena całkowita: {{price * amount}} PLN</p>
+    <button class="mb-2 btn btn-primary" (click)="onOrderApproveClick()">Złóż zamówienie</button>
   </div>
 </div>
 

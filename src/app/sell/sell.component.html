@@ -1,1 +1,48 @@
-<p>sell works!</p>
+<div class="container-fluid mt-3 border">
+
+  <h2 class="mb-3 mt-3"> Formularz sprzedaży</h2>
+
+  <form (ngSubmit)="onProductAdd(f)" #f="ngForm"
+  >
+    <div class="form-group">
+      <label for="category">Categoria</label>
+      <select class="form-control" id="category">
+        <option>MOTO</option>
+        <option>ELEKTRO</option>
+        <option>IT</option>
+      </select>
+    </div>
+    <div class="form-group mt-3">
+      <label for="title">Tytuł</label>
+      <input type="title"
+             class="form-control"
+             id="title"
+             required>
+      <small id="titleHelp" class="form-text text-muted">Niech będzie unikatowy</small>
+    </div>
+    <div class="form-group">
+      <label for="text">Opis</label>
+      <textarea
+        class="form-control"
+        id="text"
+        rows="20"
+        cols="50"
+        required>
+      </textarea>
+    </div>
+    <div class="form-group">
+      <label for="price">Cena</label>
+      <input type="number"
+             class="form-control"
+             id="price"
+             required>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="buynow" checked>
+      <label class="form-check-label" for="buynow">Kup Teraz</label>
+    </div>
+    <button type="submit"
+            class="btn btn-primary mt-3 mb-3"
+            [disabled]="!f.valid">Submit</button>
+  </form>
+</div>

@@ -4,7 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ProductListComponent} from './product-list/product-list.component';
 import {CommentComponent} from './product-list/product-details/comment/comment.component';
@@ -16,11 +16,13 @@ import {SellComponent} from './sell/sell.component';
 import {OrderComponent} from './product-list/product-details/order/order.component';
 import {ProductService} from './services/product-service';
 import {OrderService} from './services/order-service';
+import { OrderConfirmedComponent } from './product-list/product-details/order-confirmed/order-confirmed.component';
 
 const appRoutes: Routes = [
   {path: '', component: ProductListComponent},
   {path: 'produkt/:title', component: ProductDetailsComponent},
-  {path: 'produkt/zamowienie/:title', component: OrderComponent},
+  {path: 'produkt/zamowienie/:title/:price/:amount', component: OrderComponent},
+  {path: 'produkt/zamowienie/:id', component: OrderConfirmedComponent},
   {path: 'sprzedaz', component: SellComponent},
   {path: 'konto', component: AccountComponent},
   {path: 'kontakt', component: ContactComponent}
@@ -37,13 +39,15 @@ const appRoutes: Routes = [
     ContactComponent,
     AccountComponent,
     SellComponent,
-    OrderComponent
+    OrderComponent,
+    OrderConfirmedComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule
   ],
   providers: [ProductService, OrderService],
   bootstrap: [AppComponent]

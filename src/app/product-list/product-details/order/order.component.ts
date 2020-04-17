@@ -1,9 +1,8 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {ProductService} from '../../../services/product-service';
-import {Subscription} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {OrderService} from '../../../services/order-service';
-import {Orderline} from '../../../services/orderline.model';
+import {OrderResponse} from '../../../services/order-response.model';
 
 @Component({
   selector: 'app-order',
@@ -12,10 +11,10 @@ import {Orderline} from '../../../services/orderline.model';
 })
 export class OrderComponent implements OnInit, OnDestroy {
   private paramsSubscription: Subscription;
+  amount: number;
   title: string;
-  quantity = 4;
-  price = 150;
   private mockUserId = 'MOCK_USER 1';
+  price: number;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -26,6 +25,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.paramsSubscription = this.activatedRoute.params
       .subscribe((params: Params) => {
         this.title = params.title;
+        this.amount = params.amount;
+        this.price = params.price;
         console.log('route param id' + this.title);
       });
   }
@@ -35,16 +36,16 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   onOrderApproveClick() {
-    console.log(`approve order product:${this.title}, and quantity: ${this.quantity}`);
     const productTitle = this.title;
-    const amount = this.quantity;
-    this.addOrder([{productTitle, amount}]);
+    const amount = this.amount;
+    this.addOrder([{productTitle, amount}]).subscribe((orderReponse) => {
+      console.log(orderReponse);
+      this.router.navigate(['produkt/zamowienie/', orderReponse.id]);
+    });
   }
 
-  addOrder(orderlines: Array<{ productTitle: string, amount: number }>) {
-    this.orderService.addOrder(this.mockUserId, orderlines).subscribe(response => {
-      console.log(response);
-    });
+  addOrder(orderlines: Array<{ productTitle: string, amount: number }>): Observable<OrderResponse> {
+    return this.orderService.addOrder(this.mockUserId, orderlines);
   }
 
 }

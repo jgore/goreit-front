@@ -1,8 +1,8 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Product} from '../product-list/product';
-import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
+import {ProductRequest} from '../product-list/product-request';
 
 @Injectable()
 export class ProductService {
@@ -20,6 +20,11 @@ export class ProductService {
   get(title: string): Observable<Product> {
     return this.http
       .get<Product>(this.PRODUCT_URL + title);
+  }
+
+  add(productRequest: ProductRequest): Observable<Product> {
+    return this.http
+      .post<Product>(this.PRODUCT_URL, productRequest);
   }
 
   addComent(userId: string, title: string, text: string): Observable<Product> {

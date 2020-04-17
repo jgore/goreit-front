@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {ProductService} from '../services/product-service';
+import {Product} from './product';
 
 @Component({
   selector: 'app-product-list',
@@ -9,7 +10,7 @@ import {ProductService} from '../services/product-service';
 })
 export class ProductListComponent implements OnInit {
 
-  @Input() products = [];
+  @Input() products: Product[] = [];
 
   constructor(private router: Router, private productService: ProductService) {
 
@@ -18,8 +19,8 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAll()
       .subscribe(apiProducts => {
-      this.products = apiProducts;
-    });
+        this.products = apiProducts;
+      });
   }
 
   onTitleClick(title: string) {

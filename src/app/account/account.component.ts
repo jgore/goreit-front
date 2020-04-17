@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {OrderResponse} from '../services/order-response.model';
+import {OrderService} from '../services/order-service';
 
 @Component({
   selector: 'app-account',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountComponent implements OnInit {
 
-  constructor() { }
+  private mockUserId = '1';
+  orderResponses: OrderResponse[];
+
+  constructor(private orderService: OrderService) {
+  }
 
   ngOnInit(): void {
+    this.orderService
+      .getOrderByUser(this.mockUserId)
+      .subscribe((orderResponses => {
+        console.log(JSON.stringify(orderResponses));
+        this.orderResponses = orderResponses;
+      }));
   }
 
 }

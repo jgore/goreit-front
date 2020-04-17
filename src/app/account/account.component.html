@@ -1,1 +1,13 @@
-<p>account works!</p>
+<div class="container-fluid mt-3">
+  <button type="button" class="btn btn-primary btn-lg btn-block">Moje zamówienia</button>
+  <div class="mt-3" *ngFor="let orderResponse of orderResponses">
+    <p> <label></label><i> nr zamówienia {{orderResponse.id}}</i></p>
+    <div *ngFor="let orderlineView of orderResponse.orderlineViews">
+      <p> {{orderlineView.productTitle}}</p>
+      <p><label>Cena: </label> {{orderlineView.price}} PLN</p>
+      <p><label>Liczba sztuk: </label> {{orderlineView.amount}}</p>
+      <p><label>W sumie:  </label> {{orderlineView.amount* orderlineView.price}}</p>
+      <hr>
+    </div>
+  </div>
+</div>
