@@ -3,11 +3,12 @@ import {Injectable} from '@angular/core';
 import {Product} from '../product-list/product';
 import {Observable} from 'rxjs';
 import {ProductRequest} from '../product-list/product-request';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class ProductService {
 
-  PRODUCT_URL = 'http://localhost:8080/products/';
+  PRODUCT_URL = environment.API_URL + '/products/';
 
   constructor(private http: HttpClient) {
   }

@@ -5,8 +5,12 @@
   <form (ngSubmit)="onProductAdd(f)" #f="ngForm"
   >
     <div class="form-group">
-      <label for="category">Categoria</label>
-      <select class="form-control" id="category">
+      <label for="categoryName">Categoria</label>
+      <select class="form-control"
+              id="categoryName"
+              ngModel
+              name="categoryName"
+              #categoryName="ngModel">>
         <option>MOTO</option>
         <option>ELEKTRO</option>
         <option>IT</option>
@@ -14,10 +18,13 @@
     </div>
     <div class="form-group mt-3">
       <label for="title">Tytuł</label>
-      <input type="title"
+      <input type="text"
              class="form-control"
              id="title"
-             required>
+             name="title"
+             required
+             ngModel
+             #title="ngModel">
       <small id="titleHelp" class="form-text text-muted">Niech będzie unikatowy</small>
     </div>
     <div class="form-group">
@@ -27,7 +34,10 @@
         id="text"
         rows="20"
         cols="50"
-        required>
+        required
+        ngModel
+        name="text"
+        #text="ngModel">
       </textarea>
     </div>
     <div class="form-group">
@@ -35,11 +45,10 @@
       <input type="number"
              class="form-control"
              id="price"
-             required>
-    </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="buynow" checked>
-      <label class="form-check-label" for="buynow">Kup Teraz</label>
+             required
+             ngModel
+             name="price"
+             #price="ngModel">
     </div>
     <button type="submit"
             class="btn btn-primary mt-3 mb-3"

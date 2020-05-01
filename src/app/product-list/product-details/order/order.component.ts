@@ -13,7 +13,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   private paramsSubscription: Subscription;
   amount: number;
   title: string;
-  private mockUserId = 'MOCK_USER 1';
+  private mockUserId = '1';
   price: number;
 
   constructor(private router: Router,

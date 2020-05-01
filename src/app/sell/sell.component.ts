@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {ProductService} from '../services/product-service';
 import {ProductRequest} from '../product-list/product-request';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-sell',
@@ -10,7 +11,8 @@ import {ProductRequest} from '../product-list/product-request';
 })
 export class SellComponent implements OnInit {
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -27,8 +29,9 @@ export class SellComponent implements OnInit {
       values.quantity
     );
     this.productService.add(request)
-      .subscribe(() => {
-        this.ngOnInit();
+      .subscribe((response) => {
+        const title = response.title;
+        this.router.navigate([`sprzedaz/potwierdzenie/`, title]);
       });
   }
 }

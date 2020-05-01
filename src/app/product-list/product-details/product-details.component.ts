@@ -12,7 +12,7 @@ import {ProductService} from '../../services/product-service';
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
 
-  private mockUserId = 'mock user';
+  private mockUserId = '1';
   private title: string;
   product: Product;
   private paramsSubscription: Subscription;

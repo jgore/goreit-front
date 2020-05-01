@@ -17,6 +17,7 @@ import {OrderComponent} from './product-list/product-details/order/order.compone
 import {ProductService} from './services/product-service';
 import {OrderService} from './services/order-service';
 import { OrderConfirmedComponent } from './product-list/product-details/order-confirmed/order-confirmed.component';
+import { ConfirmComponent } from './sell/confirm/confirm.component';
 
 const appRoutes: Routes = [
   {path: '', component: ProductListComponent},
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   {path: 'produkt/zamowienie/:title/:price/:amount', component: OrderComponent},
   {path: 'produkt/zamowienie/:id', component: OrderConfirmedComponent},
   {path: 'sprzedaz', component: SellComponent},
+  {path: 'sprzedaz/potwierdzenie/:title', component: ConfirmComponent},
   {path: 'konto', component: AccountComponent},
   {path: 'kontakt', component: ContactComponent}
 ];
@@ -40,7 +42,8 @@ const appRoutes: Routes = [
     AccountComponent,
     SellComponent,
     OrderComponent,
-    OrderConfirmedComponent
+    OrderConfirmedComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,
