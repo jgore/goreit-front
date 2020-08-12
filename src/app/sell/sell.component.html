@@ -2,8 +2,7 @@
 
   <h2 class="mb-3 mt-3"> Formularz sprzedaży</h2>
 
-  <form (ngSubmit)="onProductAdd(f)" #f="ngForm"
-  >
+  <form (ngSubmit)="onProductAdd(f)" #f="ngForm">
     <div class="form-group">
       <label for="categoryName">Categoria</label>
       <select class="form-control"
@@ -52,6 +51,6 @@
     </div>
     <button type="submit"
             class="btn btn-primary mt-3 mb-3"
-            [disabled]="!f.valid">Submit</button>
+       >Wyslij</button>
   </form>
 </div>

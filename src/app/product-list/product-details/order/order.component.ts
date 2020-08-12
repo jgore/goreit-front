@@ -3,6 +3,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {OrderService} from '../../../services/order-service';
 import {OrderResponse} from '../../../services/order-response.model';
+import {AuthenticationService} from "../../../services/authentication-service";
 
 @Component({
   selector: 'app-order',
@@ -13,12 +14,12 @@ export class OrderComponent implements OnInit, OnDestroy {
   private paramsSubscription: Subscription;
   amount: number;
   title: string;
-  private mockUserId = '1';
   price: number;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private orderService: OrderService) {
+              private orderService: OrderService,
+              private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -45,7 +46,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   addOrder(orderlines: Array<{ productTitle: string, amount: number }>): Observable<OrderResponse> {
-    return this.orderService.addOrder(this.mockUserId, orderlines);
+    return this.orderService.addOrder(this.authService.getUserLoggedIn(), orderlines);
   }
 
 }

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgForm} from '@angular/forms';
+import {MessageService} from '../services/message-service';
+import {MessageModel} from '../services/message-model';
 
 @Component({
   selector: 'app-contact',
@@ -8,12 +10,26 @@ import {NgForm} from '@angular/forms';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  constructor(private messageService: MessageService) {
+  }
 
   ngOnInit(): void {
   }
 
   onEmailSend(form: NgForm) {
-    console.log(form.value);
+    const message = {
+      title: form.value.title,
+      body: form.value.body,
+      email: form.value.onEmailSend,
+    };
+    const booleanObservable = this.messageService.addMessage(message);
+    booleanObservable.subscribe(send => {
+      if (send) {
+        alert('email sent');
+        form.reset();
+      } else {
+        alert(' we could not send your message -try again ');
+      }
+    });
   }
 }

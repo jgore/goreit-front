@@ -4,6 +4,7 @@ import {Product} from '../product';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {ProductService} from '../../services/product-service';
+import {AuthenticationService} from "../../services/authentication-service";
 
 @Component({
   selector: 'app-product-details',
@@ -12,14 +13,14 @@ import {ProductService} from '../../services/product-service';
 })
 export class ProductDetailsComponent implements OnInit, OnDestroy {
 
-  private mockUserId = '1';
   private title: string;
   product: Product;
   private paramsSubscription: Subscription;
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
-              private productService: ProductService) {
+              private productService: ProductService,
+              private authService: AuthenticationService) {
   }
 
   ngOnInit(): void {
@@ -43,7 +44,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   onCommentAdd(form: NgForm) {
     console.log(form);
     this.productService
-      .addComent(this.mockUserId, this.title, form.value.text)
+      .addComent(this.authService.getUserLoggedIn(), this.title, form.value.text)
       .subscribe(() => {
         this.ngOnInit();
       });

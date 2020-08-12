@@ -27,11 +27,21 @@
           #text="ngModel"
           required>
       </textarea>
+        <div>
+          <label for="email">Email</label>
+          <input type="email"
+                 class="form-control"
+                 id=email
+                 ngModel
+                 name="email"
+                 #title="ngModel"
+                 required>
+        </div>
       </div>
-      <button type="submit"
-              class="btn btn-primary mt-3 mb-3"
-              [disabled]="!f.valid">Submit
-      </button>
-    </div>
+        <button type="submit"
+                class="btn btn-primary mt-3 mb-3"
+                [disabled]="!f.valid">Submit
+        </button>
+      </div>
   </form>
 </div>

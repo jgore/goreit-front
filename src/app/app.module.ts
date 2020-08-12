@@ -18,16 +18,23 @@ import {ProductService} from './services/product-service';
 import {OrderService} from './services/order-service';
 import { OrderConfirmedComponent } from './product-list/product-details/order-confirmed/order-confirmed.component';
 import { ConfirmComponent } from './sell/confirm/confirm.component';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+import {AuthGuard} from "./services/auth-guard";
+import {MessageService} from "./services/message-service";
+
 
 const appRoutes: Routes = [
   {path: '', component: ProductListComponent},
   {path: 'produkt/:title', component: ProductDetailsComponent},
   {path: 'produkt/zamowienie/:title/:price/:amount', component: OrderComponent},
   {path: 'produkt/zamowienie/:id', component: OrderConfirmedComponent},
-  {path: 'sprzedaz', component: SellComponent},
-  {path: 'sprzedaz/potwierdzenie/:title', component: ConfirmComponent},
-  {path: 'konto', component: AccountComponent},
-  {path: 'kontakt', component: ContactComponent}
+  {path: 'sprzedaz', component: SellComponent ,  canActivate: [AuthGuard] },
+  {path: 'sprzedaz/potwierdzenie/:title', component: ConfirmComponent, canActivate: [AuthGuard]},
+  {path: 'konto', component: AccountComponent, canActivate: [AuthGuard]},
+  {path: 'kontakt', component: ContactComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'logout', component: LogoutComponent}
 ];
 
 @NgModule({
@@ -43,7 +50,9 @@ const appRoutes: Routes = [
     SellComponent,
     OrderComponent,
     OrderConfirmedComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +61,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule
   ],
-  providers: [ProductService, OrderService],
+  providers: [ProductService, OrderService, AuthGuard, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
