@@ -22,10 +22,13 @@ import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import {AuthGuard} from "./services/auth-guard";
 import {MessageService} from "./services/message-service";
+import { CategoryComponent } from './category/category.component';
+import {CategoryService} from "./services/category-service";
 
 
 const appRoutes: Routes = [
-  {path: '', component: ProductListComponent},
+  {path: '', component: CategoryComponent},
+  {path: 'kategoria/:category', component: ProductListComponent},
   {path: 'produkt/:title', component: ProductDetailsComponent},
   {path: 'produkt/zamowienie/:title/:price/:amount', component: OrderComponent},
   {path: 'produkt/zamowienie/:id', component: OrderConfirmedComponent},
@@ -52,7 +55,8 @@ const appRoutes: Routes = [
     OrderConfirmedComponent,
     ConfirmComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule
   ],
-  providers: [ProductService, OrderService, AuthGuard, MessageService],
+  providers: [ProductService, OrderService, AuthGuard, MessageService, CategoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

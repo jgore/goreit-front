@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ProductService} from '../services/product-service';
 import {Product} from './product';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-product-list',
@@ -11,17 +12,30 @@ import {Product} from './product';
 export class ProductListComponent implements OnInit {
 
   @Input() products: Product[] = [];
+  private categoryName: string;
+  private paramsSubscription: Subscription;
 
-  constructor(private router: Router, private productService: ProductService) {
+  constructor(private router: Router,
+              private activatedRoute: ActivatedRoute,
+              private productService: ProductService) {
 
   }
 
   ngOnInit(): void {
-    this.productService.getAll()
-      .subscribe(apiProducts => {
-        this.products = apiProducts;
+    this.paramsSubscription = this.activatedRoute.params
+      .subscribe((params: Params) => {
+        this.categoryName = params.category;
+        console.log('route param id' + this.categoryName);
+
+        this.productService.getByCategory(this.categoryName)
+          .subscribe(apiProducts => {
+            this.products = apiProducts;
+          });
       });
+
   }
+
+
 
   onTitleClick(title: string) {
     this.router.navigate(['/produkt/' + title]);
