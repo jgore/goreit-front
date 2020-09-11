@@ -1,0 +1,12 @@
+<div class="container-fluid mt-3">
+
+  <p [ngModel] >uzytkownik : {{this.username}}</p>
+
+  <button type="button" class="btn btn-primary btn-lg btn-block">Moje zamówienia</button>
+  <div class="mt-3" *ngFor="let photoModel of photoModels" >
+    <p> <label></label><i>  {{photoModel.name}}</i></p>
+    <img src= "{{'data:image/jpg;base64,' + photoModel.imageByte}}" alt="image">
+
+
+  </div>
+</div>

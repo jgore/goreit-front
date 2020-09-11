@@ -20,11 +20,12 @@ import { OrderConfirmedComponent } from './product-list/product-details/order-co
 import { ConfirmComponent } from './sell/confirm/confirm.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
-import {AuthGuard} from "./services/auth-guard";
-import {MessageService} from "./services/message-service";
+import {AuthGuard} from './services/auth-guard';
+import {MessageService} from './services/message-service';
 import { CategoryComponent } from './category/category.component';
-import {CategoryService} from "./services/category-service";
-
+import {CategoryService} from './services/category-service';
+import { PhotoGalleryComponent } from './account/photo-gallery/photo-gallery.component';
+import {PhotoService} from './services/photo-service';
 
 const appRoutes: Routes = [
   {path: '', component: CategoryComponent},
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
   {path: 'produkt/zamowienie/:id', component: OrderConfirmedComponent},
   {path: 'sprzedaz', component: SellComponent ,  canActivate: [AuthGuard] },
   {path: 'sprzedaz/potwierdzenie/:title', component: ConfirmComponent, canActivate: [AuthGuard]},
+  {path: 'konto/galeria', component: PhotoGalleryComponent, canActivate: [AuthGuard]},
   {path: 'konto', component: AccountComponent, canActivate: [AuthGuard]},
   {path: 'kontakt', component: ContactComponent},
   {path: 'login', component: LoginComponent},
@@ -56,7 +58,9 @@ const appRoutes: Routes = [
     ConfirmComponent,
     LoginComponent,
     LogoutComponent,
-    CategoryComponent
+    CategoryComponent,
+    PhotoGalleryComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule
   ],
-  providers: [ProductService, OrderService, AuthGuard, MessageService, CategoryService],
+  providers: [ProductService, OrderService, AuthGuard, MessageService, CategoryService, PhotoService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
