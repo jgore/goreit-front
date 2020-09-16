@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {OrderResponse} from '../../services/order-response.model';
 import {OrderService} from '../../services/order-service';
 import {AuthenticationService} from '../../services/authentication-service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-bought',
@@ -13,7 +14,8 @@ export class BoughtComponent implements OnInit {
   orderResponses: OrderResponse[];
   username: any;
 
-  constructor(private orderService: OrderService,
+  constructor(private router: Router,
+              private orderService: OrderService,
               private authService: AuthenticationService) {
   }
 
@@ -24,9 +26,12 @@ export class BoughtComponent implements OnInit {
     this.orderService
       .getOrderByUser(this.authService.getUserLoggedIn())
       .subscribe((orderResponses => {
-        console.log(JSON.stringify(orderResponses));
         this.orderResponses = orderResponses;
       }));
+  }
+
+  onSellerDetailsClick(sellerId: string) {
+    this.router.navigate(['/konto/kupione/' + sellerId]);
   }
 
 

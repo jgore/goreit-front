@@ -30,6 +30,8 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { BoughtComponent } from './account/bought/bought.component';
 import { SoldComponent } from './account/sold/sold.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { DetailsComponent } from './account/bought/details/details.component';
+import {AccountService} from "./services/account-service";
 
 const appRoutes: Routes = [
   {path: '', component: CategoryComponent},
@@ -39,6 +41,7 @@ const appRoutes: Routes = [
   {path: 'produkt/zamowienie/:id', component: OrderConfirmedComponent},
   {path: 'sprzedaz', component: SellComponent ,  canActivate: [AuthGuard] },
   {path: 'sprzedaz/potwierdzenie/:title', component: ConfirmComponent, canActivate: [AuthGuard]},
+  {path: 'konto/kupione/:sellerId', component: DetailsComponent, canActivate: [AuthGuard]},
   {path: 'konto/kupione', component: BoughtComponent, canActivate: [AuthGuard]},
   {path: 'konto/sprzedane', component: SoldComponent, canActivate: [AuthGuard]},
   {path: 'konto/galeria', component: PhotoGalleryComponent, canActivate: [AuthGuard]},
@@ -68,6 +71,8 @@ const appRoutes: Routes = [
     PhotoGalleryComponent,
     BoughtComponent,
     SoldComponent,
+    DetailsComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +83,7 @@ const appRoutes: Routes = [
     NgImageSliderModule,
     FontAwesomeModule
   ],
-  providers: [ProductService, OrderService, AuthGuard, MessageService, CategoryService, PhotoAlbumService],
+  providers: [ProductService, OrderService, AuthGuard, MessageService, CategoryService, PhotoAlbumService, AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

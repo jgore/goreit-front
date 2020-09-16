@@ -24,7 +24,6 @@ export class SoldComponent implements OnInit {
     this.orderService
       .getOrderByUser(this.authService.getUserLoggedIn())
       .subscribe((orderResponses => {
-        console.log(JSON.stringify(orderResponses));
         this.orderResponses = orderResponses;
       }));
   }

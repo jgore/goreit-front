@@ -16,6 +16,7 @@
       <p><label>Cena: </label> {{orderlineView.price}} PLN</p>
       <p><label>Liczba sztuk: </label> {{orderlineView.amount}}</p>
       <p><label>W sumie:  </label> {{orderlineView.amount* orderlineView.price}}</p>
+      <p><label></label><button  class="btn btn-primary" (click)="onSellerDetailsClick(orderResponse.sellerId)">Dane sprzedawcy</button></p>
       <hr>
     </div>
   </div>

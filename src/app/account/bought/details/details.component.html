@@ -1,0 +1,51 @@
+
+<div class="container-fluid mt-3">
+
+
+  <a class="btn btn-primary m-3" role="button" routerLink="/konto/"> Konto </a>
+  <a class="btn btn-primary m-3" role="button" routerLink="/konto/kupione"  routerLinkActive="active"> Kupione </a>
+  <a class="btn btn-primary m-3"  role="button"  routerLink="/konto/sprzedane"  routerLinkActive="active"> Sprzedane </a>
+  <a class="btn btn-primary m-3" role="button"   routerLink="/konto/galeria"  routerLinkActive="active">Galeria </a>
+
+  <div class="container-fluid m-1">
+
+<!--    <p [ngModel] >uzytkownik : {{this.username}}</p>-->
+
+    <table class="table">
+      <tbody>
+      <tr>
+        <th scope="row">login</th>
+        <td>{{this.sellerAccount.userId}}</td>
+      </tr>
+      <tr>
+        <th scope="row">imie</th>
+        <td>{{this.sellerAccount.firstName}}</td>
+      </tr>
+      <tr>
+        <th scope="row">nazwisko</th>
+        <td>{{this.sellerAccount.lastName}}</td>
+      </tr>
+      <tr>
+        <th scope="row">email</th>
+        <td>XXXXX</td>
+      </tr>
+      <tr>
+        <th scope="row">telefon</th>
+        <td>XXXXX</td>
+      </tr>
+      <tr>
+        <th scope="row">adres</th>
+        <td>{{this.sellerAccount.address.street}}
+        {{this.sellerAccount.address.streetNumber}} /
+        {{this.sellerAccount.address.apartmentNumber}},<br />
+        {{this.sellerAccount.address.postCode}}
+        {{this.sellerAccount.address.city}}<br />
+        {{this.sellerAccount.address.country}}</td>
+
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>
