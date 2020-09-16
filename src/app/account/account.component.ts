@@ -10,13 +10,16 @@ import {AuthenticationService} from '../services/authentication-service';
 })
 export class AccountComponent implements OnInit {
 
+  username: any;
 
   constructor(private orderService: OrderService,
               private authService: AuthenticationService) {
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
 
+    this.username = this.authService.getUserLoggedIn();
+  }
 
 
 }

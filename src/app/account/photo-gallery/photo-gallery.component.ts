@@ -29,15 +29,25 @@ export class PhotoGalleryComponent implements OnInit {
     this.photoService
       .getPhotosByUser()
       .subscribe((photoResponse => {
-        console.log(JSON.stringify(photoResponse));
         this.photoModels = photoResponse;
         this.setImageObject();
       }));
 
   }
 
-  setImageObject() {
+  onAdd() {
+    console.log('add foto gallery clicked');
+  }
 
+  onRemove() {
+    console.log('Remove photo gallery');
+  }
+
+  onEdit() {
+    console.log('Edit photo gallery');
+  }
+
+  setImageObject() {
     this.imageObjectsList = [];
 
     // this.imageObject.push({

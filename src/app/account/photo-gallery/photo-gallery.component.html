@@ -1,14 +1,25 @@
 <div class="container-fluid mt-1 ">
 
+  <div class="m-1">
+    <a class="btn btn-primary m-3" role="button" routerLink="/konto/"> Konto </a>
     <a class="btn btn-primary m-3" role="button" routerLink="/konto/kupione"> Kupione </a>
-    <a class="btn btn-primary m-3"  role="button"  routerLink="/konto/sprzedane"> Sprzedane </a>
-    <a class="btn btn-primary m-3" role="button"   routerLink="/konto/galeria">Galeria </a>
+    <a class="btn btn-primary m-3" role="button" routerLink="/konto/sprzedane"> Sprzedane </a>
+    <a class="btn btn-primary m-3" role="button" routerLink="/konto/galeria">Galeria </a>
+  </div>
+
+  <div class="m-3">
+    <button (click)="onAdd()" class="m-1 btn btn-success">+</button>
+    <button (click)="onRemove()" class="m-1 btn btn-danger">-</button>
+    <button  (click)="onEdit()" class="m-1 btn btn-warning">EDIT</button>
+  </div>
+
 
   <div *ngFor="let imageObject of imageObjectsList;let i = index">
     <div class="alert alert-primary" role="alert">
       {{photoModels[i].name}}
     </div>
     <ng-image-slider [animationSpeed]="0.5" [images]="this.imageObject" #nav></ng-image-slider>
+
   </div>
 
 </div>

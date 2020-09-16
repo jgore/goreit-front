@@ -29,6 +29,7 @@ import {PhotoAlbumService} from './services/photo-album-service';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { BoughtComponent } from './account/bought/bought.component';
 import { SoldComponent } from './account/sold/sold.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 const appRoutes: Routes = [
   {path: '', component: CategoryComponent},
@@ -74,7 +75,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
-    NgImageSliderModule
+    NgImageSliderModule,
+    FontAwesomeModule
   ],
   providers: [ProductService, OrderService, AuthGuard, MessageService, CategoryService, PhotoAlbumService],
   bootstrap: [AppComponent]
