@@ -13,11 +13,14 @@ export class OrderService {
   }
 
   getAuth() {
+    const  username = localStorage.getItem('username');
+    const password = localStorage.getItem('password');
+
     return {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        Authorization: 'Basic ' + btoa('admin:admin')
-      })
+        Authorization: 'Basic ' + btoa(`${username}:${password}`),
+      }),
     };
   }
 

@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
     authorized.subscribe(response => {
       console.log(response);
       if (response.username !== undefined) {
-        localStorage.setItem('username', response.username);
+        localStorage.setItem('username', values.email);
+        localStorage.setItem('password', values.password);
         this.router.navigate([`/`]);
       }
   },

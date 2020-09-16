@@ -25,7 +25,10 @@ import {MessageService} from './services/message-service';
 import { CategoryComponent } from './category/category.component';
 import {CategoryService} from './services/category-service';
 import { PhotoGalleryComponent } from './account/photo-gallery/photo-gallery.component';
-import {PhotoService} from './services/photo-service';
+import {PhotoAlbumService} from './services/photo-album-service';
+import { NgImageSliderModule } from 'ng-image-slider';
+import { BoughtComponent } from './account/bought/bought.component';
+import { SoldComponent } from './account/sold/sold.component';
 
 const appRoutes: Routes = [
   {path: '', component: CategoryComponent},
@@ -35,6 +38,8 @@ const appRoutes: Routes = [
   {path: 'produkt/zamowienie/:id', component: OrderConfirmedComponent},
   {path: 'sprzedaz', component: SellComponent ,  canActivate: [AuthGuard] },
   {path: 'sprzedaz/potwierdzenie/:title', component: ConfirmComponent, canActivate: [AuthGuard]},
+  {path: 'konto/kupione', component: BoughtComponent, canActivate: [AuthGuard]},
+  {path: 'konto/sprzedane', component: SoldComponent, canActivate: [AuthGuard]},
   {path: 'konto/galeria', component: PhotoGalleryComponent, canActivate: [AuthGuard]},
   {path: 'konto', component: AccountComponent, canActivate: [AuthGuard]},
   {path: 'kontakt', component: ContactComponent},
@@ -60,16 +65,18 @@ const appRoutes: Routes = [
     LogoutComponent,
     CategoryComponent,
     PhotoGalleryComponent,
-
+    BoughtComponent,
+    SoldComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgImageSliderModule
   ],
-  providers: [ProductService, OrderService, AuthGuard, MessageService, CategoryService, PhotoService],
+  providers: [ProductService, OrderService, AuthGuard, MessageService, CategoryService, PhotoAlbumService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

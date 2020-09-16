@@ -1,12 +1,16 @@
-<div class="container-fluid mt-3">
+<div class="container-fluid mt-1 ">
 
-  <p [ngModel] >uzytkownik : {{this.username}}</p>
+    <a class="btn btn-primary m-3" role="button" routerLink="/konto/kupione"> Kupione </a>
+    <a class="btn btn-primary m-3"  role="button"  routerLink="/konto/sprzedane"> Sprzedane </a>
+    <a class="btn btn-primary m-3" role="button"   routerLink="/konto/galeria">Galeria </a>
 
-  <button type="button" class="btn btn-primary btn-lg btn-block">Moje zamówienia</button>
-  <div class="mt-3" *ngFor="let photoModel of photoModels" >
-    <p> <label></label><i>  {{photoModel.name}}</i></p>
-    <img src= "{{'data:image/jpg;base64,' + photoModel.imageByte}}" alt="image">
-
-
+  <div *ngFor="let imageObject of imageObjectsList;let i = index">
+    <div class="alert alert-primary" role="alert">
+      {{photoModels[i].name}}
+    </div>
+    <ng-image-slider [animationSpeed]="0.5" [images]="this.imageObject" #nav></ng-image-slider>
   </div>
+
 </div>
+
+
