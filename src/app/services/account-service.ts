@@ -3,7 +3,7 @@ import {environment} from '../../environments/environment';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {OrderResponse} from './order-response.model';
-import {Account} from '../account/bought/details/account';
+import {Account} from '../account/account';
 
 @Injectable()
 export class AccountService {

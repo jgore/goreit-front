@@ -3,7 +3,7 @@ import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {OrderService} from '../../../services/order-service';
 import {OrderResponse} from '../../../services/order-response.model';
-import {AuthenticationService} from "../../../services/authentication-service";
+import {AuthenticationService} from '../../../services/authentication-service';
 
 @Component({
   selector: 'app-order',

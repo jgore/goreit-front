@@ -4,7 +4,8 @@ import {Product} from '../product';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {ProductService} from '../../services/product-service';
-import {AuthenticationService} from "../../services/authentication-service";
+import {AuthenticationService} from '../../services/authentication-service';
+import {PhotoAlbumModel} from '../../services/photo-album-model';
 
 @Component({
   selector: 'app-product-details',
@@ -16,6 +17,9 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   private title: string;
   product: Product;
   private paramsSubscription: Subscription;
+
+
+  imageObjects: Array<object> = [];
 
   constructor(private router: Router,
               private activatedRoute: ActivatedRoute,
@@ -32,12 +36,13 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
       });
   }
 
+
   getProduct(title: string) {
     this.productService
       .get(title)
       .subscribe((product) => {
-        console.log('retrived product ' + product.toString());
         this.product = product;
+        this.setImageObject();
       });
   }
 
@@ -59,4 +64,48 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.paramsSubscription.unsubscribe();
   }
+
+  setImageObject() {
+
+    this.imageObjects = []
+    if (this.product.sellerId === 'admin') {
+
+      this.imageObjects.push({
+        image: 'https://youtu.be/dpXn9Cn9toU',
+        thumbImage: 'https://youtu.be/dpXn9Cn9toU',
+        alt: 'alt of image',
+        title: 'Filmik o gShop',
+        imagePopup: true,
+      });
+
+    }
+    let i = 0;
+
+    for (const imageByteList of this.product.photoAlbum.byteList) {
+      const base64 = btoa(
+        new Uint8Array(imageByteList)
+          .reduce((data, byte) => data + String.fromCharCode(byte), '')
+      );
+
+      const image = 'data:image/JPEG;base64, ' + base64;
+
+      i = i + 1;
+
+      this.imageObjects.push({
+        image,
+        thumbImage: image,
+        title: i,
+        alt: 'alt of image',
+        name: this.product.photoAlbum.name,
+        imagePopup: true,
+        slideImage: 2
+      });
+    }
+
+  }
+
+  isLoggedIn() {
+    return this.authService.getUserLoggedIn();
+  }
+
 }

@@ -36,4 +36,8 @@ export class OrderService {
   getOrderByUser(id: string): Observable<OrderResponse[]> {
     return this.http.get<OrderResponse[]>(`${this.ORDER_URL}/byUser/${id}`, this.getAuth());
   }
+
+  getOrderBySellerId(id: string): Observable<OrderResponse[]> {
+    return this.http.get<OrderResponse[]>(`${this.ORDER_URL}/bySeller`, this.getAuth());
+  }
 }

@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {AccountService} from '../../../services/account-service';
-import {Account} from './account';
+import {Account} from '../../account';
 
 @Component({
   selector: 'app-details',

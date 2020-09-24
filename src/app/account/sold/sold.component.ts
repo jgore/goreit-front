@@ -22,7 +22,7 @@ export class SoldComponent implements OnInit {
     this.username = this.authService.getUserLoggedIn();
 
     this.orderService
-      .getOrderByUser(this.authService.getUserLoggedIn())
+      .getOrderBySellerId(this.authService.getUserLoggedIn())
       .subscribe((orderResponses => {
         this.orderResponses = orderResponses;
       }));

@@ -8,14 +8,14 @@
   <p [ngModel] >uzytkownik : {{this.username}}</p>
 
   <button type="button" class="btn btn-primary btn-lg btn-block">Moje zamówienia</button>
-  <div class="mt-3" *ngFor="let orderResponse of orderResponses  odd as isOdd"
+  <div class="mt-3 p-3" *ngFor="let orderResponse of orderResponses  odd as isOdd"
        [ngStyle]="isOdd?{'background-color': '#D3D3D3'}: {'background-color': 'white'}"  >
     <p> <label></label><i> nr zamówienia {{orderResponse.id}}</i></p>
     <div *ngFor="let orderlineView of orderResponse.orderlineViews">
       <p> {{orderlineView.productTitle}}</p>
       <p><label>Cena: </label> {{orderlineView.price}} PLN</p>
       <p><label>Liczba sztuk: </label> {{orderlineView.amount}}</p>
-      <p><label>W sumie:  </label> {{orderlineView.amount* orderlineView.price}}</p>
+      <p><label>W sumie:  </label> {{orderlineView.amount* orderlineView.price}} PLN</p>
       <p><label></label><button  class="btn btn-primary" (click)="onSellerDetailsClick(orderResponse.sellerId)">Dane sprzedawcy</button></p>
       <hr>
     </div>

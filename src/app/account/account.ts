@@ -1,4 +1,4 @@
-import {Address} from './address';
+import {Address} from './bought/details/address';
 
 export interface Account {
 
@@ -7,5 +7,6 @@ export interface Account {
   lastName: string;
   address: Address;
   createAt: string;
+  balance: number;
 }
 
