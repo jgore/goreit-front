@@ -19,8 +19,9 @@ export class ContactComponent implements OnInit {
   onEmailSend(form: NgForm) {
     const message = {
       title: form.value.title,
-      body: form.value.body,
-      email: form.value.onEmailSend,
+      body: form.value.text,
+      city: form.value.city,
+      email: form.value.email,
     };
     const booleanObservable = this.messageService.addMessage(message);
     booleanObservable.subscribe(send => {
